@@ -1,4 +1,4 @@
-#include <iostream> // 提供“输入输出流操作” ---> cout、cerr
+#include <iostream> // 提供“输入输出流操作” ---> cout、cerr 
 #include <unistd.h> // 提供“系统调用” ---> pipe、fork、write、read、sleep 等
 
 #include <sys/types.h> // 提供 pid_t 等类型定义
