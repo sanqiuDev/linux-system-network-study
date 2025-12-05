@@ -11,7 +11,7 @@
 void ChildWrite(int wfd) //注意：参数 wfd：管道的写端文件描述符
 {
     char buffer[1024];    
-    int cnt = 0;          
+    int cnt = 0;           
 
     while (true)          
     {
