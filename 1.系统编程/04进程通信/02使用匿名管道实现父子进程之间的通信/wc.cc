@@ -10,7 +10,7 @@
 // 实现：子进程执行的写操作函数：向管道写端写入数据
 void ChildWrite(int wfd) // 注意：参数 wfd：管道的写端文件描述符
 {
-    char buffer[1024];
+    char buffer[1024]; 
     int cnt = 0;
 
     while (true)
