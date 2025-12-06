@@ -20,7 +20,7 @@ void Download()
 {
     std::cout << "我是一个下载的任务" << std::endl;
 }
-
+ 
 //3.上传任务：示例任务函数，符合task_t类型
 void Upload()
 {
