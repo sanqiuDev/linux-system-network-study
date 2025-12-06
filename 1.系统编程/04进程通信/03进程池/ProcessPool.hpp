@@ -22,7 +22,7 @@ private:
     TaskManager _tm;   
     ChannelManager _cm; 
 
-public:
+public: 
     //1.“构造函数” ---> 初始化进程池大小，并向任务管理器注册预设任务
     ProcessPool(int num) : _process_num(num)
     {
