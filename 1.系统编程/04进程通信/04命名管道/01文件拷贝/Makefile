@@ -15,4 +15,4 @@ readfifo:ReadFifo.cc
 clean:
 	rm -f readfile readfifo
 
-	
+	 
