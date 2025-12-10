@@ -8,8 +8,8 @@
 *       1. mkfifo
 */
 #include <sys/types.h>
-#include <sys/stat.h>
-
+#include <sys/stat.h> 
+ 
 /* 说明使用下面的函数的时候需要包含下面的头文件：
 *       1. open
 */
