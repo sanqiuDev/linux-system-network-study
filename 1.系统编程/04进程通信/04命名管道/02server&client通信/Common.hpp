@@ -110,7 +110,7 @@ public:
     ~FileOperator()
     {
     }
-
+ 
     //3.“以只读方式打开管道” ---> 若写端未打开，读端的open会阻塞，直到写端打开后才返回
     void OpenForRead()
     {
