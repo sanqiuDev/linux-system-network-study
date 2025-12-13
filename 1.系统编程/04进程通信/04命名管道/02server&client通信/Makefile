@@ -13,3 +13,4 @@ server:Server.cc
 .PHONY:clean
 clean:
 	rm -f client server
+ 
