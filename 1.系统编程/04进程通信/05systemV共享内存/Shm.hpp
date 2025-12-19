@@ -18,7 +18,7 @@
 const int gshmid = -1;
 const int gsize = 4096;
 const int gmode = 0666;
-
+ 
 //4.ftok函数使用的“文件路径”（当前目录）---> 用于生成唯一IPC键值
 //5.ftok函数使用的“项目标识符”（0x66，仅低8位有效）---> 用于区分同一文件对应的不同IPC资源
 const std::string PathName = ".";
