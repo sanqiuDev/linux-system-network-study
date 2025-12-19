@@ -14,7 +14,7 @@
 //1.宏定义：管道文件的路径和名称
 #define PATH "."        // 管道文件所在目录（当前目录）
 #define FILENAME "fifo" // 管道文件名称
-
+ 
 //2.错误处理宏：打印错误信息并退出程序
 #define ERR_EXIT(m)         \
     do                      \
