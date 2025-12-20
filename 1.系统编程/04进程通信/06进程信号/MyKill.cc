@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
 {
     //1.检查命令行参数数量是否正确
     if(argc != 3)
-    {
+    { 
         std::cout << "./mykill sign pid" << std::endl; 
         return 1;  
     }
