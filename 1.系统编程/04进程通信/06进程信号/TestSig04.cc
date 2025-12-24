@@ -14,7 +14,7 @@ void handlerSig(int sig)
 }
 
 int main()
-{
+{ 
     //1.为SIGALRM信号（闹钟信号）注册handlerSig处理函数
     signal(SIGALRM, handlerSig);
 
