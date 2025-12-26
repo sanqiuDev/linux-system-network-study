@@ -19,7 +19,7 @@ int main()
 
     // //第二版：忽略信号
     // signal(2, SIG_IGN); 
-
+ 
     while(true)
     {
         sleep(1);
