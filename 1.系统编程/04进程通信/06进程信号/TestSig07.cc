@@ -20,7 +20,7 @@ void PrintPending(sigset_t &pending)
         {
             std::cout << "1";  // 1表示信号已产生（未决）
         }
-
+ 
         //情况二：不在pengding信号集中
         else
         {
