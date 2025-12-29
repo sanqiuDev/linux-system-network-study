@@ -20,7 +20,7 @@ int main()
         printf("hello linux\n");
         printf("hello linux\n");
 
-
+ 
         int a = 10;
         a /= 0;
 
