@@ -22,7 +22,7 @@ void handler(int signum)
 
         //2.3：遍历信号编号1~31（常见信号集中的有效信号范围）
         for(int i = 31; i >= 1; i--)
-        {
+        { 
             // 调用sigismember函数：检查信号i是否在pending集合中
             if(sigismember(&pending, i))
                 std::cout << "1";  // 信号i“处于”未决状态，输出1
