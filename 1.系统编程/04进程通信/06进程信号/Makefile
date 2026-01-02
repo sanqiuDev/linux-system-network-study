@@ -8,4 +8,4 @@ mykill:MyKill.cc
 
 .PHONY:clean
 clean:
-	rm -f testsig mykill
+	rm -f testsig mykill 
