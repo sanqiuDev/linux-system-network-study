@@ -20,7 +20,7 @@ void WaitAll(int num)
         */
         pid_t n = waitpid(-1, nullptr, WNOHANG);  //细节二：使用非阻塞等待 <--- 子进程不会一起退出
         
-
+ 
         //情况一：没有可回收的子进程，退出循环
         if (n == 0) 
         {
