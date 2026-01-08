@@ -20,7 +20,7 @@ int main()
         
         //子
         if (id == 0)
-        {
+        { 
             sleep(3); 
             std::cout << "I am child, exit" << std::endl; 
             exit(3); 
