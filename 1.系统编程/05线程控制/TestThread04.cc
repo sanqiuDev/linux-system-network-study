@@ -4,7 +4,7 @@
 #include <cstdio>      // 包含“C标准输入输出库” -----> 提供printf、snprintf等函数（格式化输出）
 #include <unistd.h>    // 包含“Unix系统调用接口” ----> 提供sleep()函数（线程休眠）
 #include <pthread.h>   // 包含“POSIX线程库头文件” ---> 提供线程创建、等待等函数（pthread_create/pthread_join等）
-
+ 
 
 //1.定义全局变量 ---> 供主线程和新线程共享访问
 int flag = 100;
