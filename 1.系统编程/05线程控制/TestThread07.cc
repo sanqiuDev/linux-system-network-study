@@ -4,7 +4,7 @@
 #include <unistd.h>   // 包含“Unix系统调用接口” 
 #include <pthread.h>  // 包含“POSIX线程库头文件” 
 
-
+ 
 /*------------------------------------新线程执行函数------------------------------------*/
 void *routine(void *args) // args：传递给新线程的参数（由pthread_create的第四个参数传入）
 {
