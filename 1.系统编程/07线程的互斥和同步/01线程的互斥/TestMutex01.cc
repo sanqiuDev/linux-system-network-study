@@ -1,5 +1,5 @@
 //模拟数据不一致的真实现象抢票 
-
+ 
 #include <stdio.h>    
 #include <unistd.h> 
 #include <pthread.h>    // 提供“POSIX线程库接口” ---> 线程创建、互斥锁等
