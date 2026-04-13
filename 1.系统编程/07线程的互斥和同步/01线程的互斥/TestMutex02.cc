@@ -1,5 +1,5 @@
 //使用全局互斥锁解决数据不一致的抢票情况
-
+ 
 #include <stdio.h>    
 #include <unistd.h> 
 #include <pthread.h>    // 提供“POSIX线程库接口” ---> 线程创建、互斥锁等
