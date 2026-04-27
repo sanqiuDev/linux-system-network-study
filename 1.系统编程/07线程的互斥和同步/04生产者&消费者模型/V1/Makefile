@@ -3,4 +3,4 @@ pc:Main.cc
 	
 .PHONY:clean
 clean:
-	rm -f pc
+	rm -f pc 
