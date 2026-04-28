@@ -7,7 +7,7 @@
 
 //1.阻塞队列的默认容量
 const int defaultcap = 5; 
-
+ 
 // 模板类：支持存储任意类型T的数据，实现线程安全的阻塞队列
 template <typename T>
 class BlockQueue
