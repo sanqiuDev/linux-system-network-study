@@ -4,7 +4,7 @@
 #include <vector>       // 提供“std::vector容器” ---> 作为环形队列的底层存储结构
 #include "Sem.hpp"      // 包含“自定义Sem信号量类头文件” ---> 用于控制生产/消费的同步
 #include "Mutex.hpp"    // 包含“自定义Mutex互斥锁类头文件” ---> 用于保护临界区操作
-
+ 
 //1.环形队列的默认容量
 static const int gcap = 5; 
 
