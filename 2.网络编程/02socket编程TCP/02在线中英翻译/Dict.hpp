@@ -1,5 +1,5 @@
 #pragma once  
-
+ 
 // 标准库头文件包含
 #include <iostream>         // 提供“标准输入输出”
 #include <fstream>          // 提供“文件输入输出流” ---> 用于读取字典文件
