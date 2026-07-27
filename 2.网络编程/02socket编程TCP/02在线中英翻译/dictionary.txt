@@ -8,7 +8,7 @@ happy: 快乐的
 sad: 悲伤的
 hello: 
 : 你好
-
+ 
 
 
 run: 跑
