@@ -1,6 +1,6 @@
 #include "TcpServer.hpp" // 包含 ---> TCP服务器封装类头文件（封装了TCP服务器的初始化、启动、连接处理等核心逻辑）
 #include "Dict.hpp"      // 包含 ---> 翻译模块头文件（预留扩展，如后续需实现翻译功能可取消注释）
-
+  
 //1.默认请求处理函数 ---> 当未指定其他处理逻辑时使用（示例回调函数）
 std::string defaulthandler(const std::string &word, InetAddr &addr)
 {
