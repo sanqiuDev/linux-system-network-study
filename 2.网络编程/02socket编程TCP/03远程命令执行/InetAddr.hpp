@@ -8,7 +8,7 @@ private:
     //1.存储网络字节序的IPv4地址和端口（底层依赖）
     //2.主机字节序的IP
     //3.主机字节序的端口号
-
+ 
     struct sockaddr_in _addr; 
     std::string _ip;         
     uint16_t _port;           
