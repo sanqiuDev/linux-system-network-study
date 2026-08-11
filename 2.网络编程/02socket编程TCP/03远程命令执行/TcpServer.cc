@@ -1,6 +1,6 @@
 #include "TcpServer.hpp" // 包含 ---> TCP服务器封装类头文件（封装了TCP服务器的初始化、启动、连接处理等核心逻辑）
 #include "Command.hpp"   // 包含 ---> 命令执行模块头文件（封装了系统命令执行逻辑，如Command类的Execute方法）
-
+ 
 //1.默认请求处理函数 ---> 当未指定其他处理逻辑时使用（示例回调函数）
 std::string defaulthandler(const std::string &word, InetAddr &addr)
 {
