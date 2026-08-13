@@ -8,4 +8,4 @@ tcpserver:TcpServer.cc
 
 .PHONY:clean
 clean:
-	rm -f tcpclient tcpserver
+	rm -f tcpclient tcpserver 
