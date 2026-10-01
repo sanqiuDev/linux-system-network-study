@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- 页面元信息配置 -->
+    <meta charset="UTF-8">                               <!-- 设置字符编码为UTF-8，避免中文乱码 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- 兼容IE最新版本 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- 移动端适配 -->
+    <!-- 引入jQuery库（CDN方式），用于简化DOM操作和AJAX请求 -->
+    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+    <title>boost 搜索引擎</title>
+    <style>
+        /* ===================== 全局样式重置 ===================== */
+        /* 通配符选择器：重置所有元素的默认内外边距，统一盒模型 */
+        * {
+            margin: 0;    /* 清除默认外边距 */
+            padding: 0;   /* 清除默认内边距 */
+        }
+        /* HTML/Body样式：让页面高度占满视口 */
+        html,
+        body {
+            height: 100%; /* 页面高度100%，避免内容溢出时出现空白 */
+        }
+
+        /* ===================== 容器样式 ===================== */
+        /* 类选择器：页面主容器（居中显示） */
+        .container {
+            width: 800px;          /* 容器固定宽度 */
+            margin: 0px auto;      /* 水平居中（上下边距0，左右自动） */
+            margin-top: 15px;      /* 顶部外边距，与页面顶部保持距离 */
+        }
+
+        /* ===================== 搜索框区域样式 ===================== */
+        /* 复合选择器：容器下的搜索框父元素 */
+        .container .search {
+            width: 100%;           /* 宽度继承父容器 */
+            height: 52px;          /* 固定高度，与输入框+按钮高度匹配 */
+        }
+        /* 搜索输入框样式 */
+        .container .search input {
+            float: left;           /* 左浮动，与按钮并排显示 */
+            width: 600px;          /* 输入框宽度 */
+            height: 50px;          /* 输入框高度（比父元素少2px，匹配边框） */
+            border: 1px solid black; /* 黑色边框（宽度1px） */
+            border-right: none;    /* 去掉右侧边框，与按钮无缝衔接 */
+            padding-left: 10px;    /* 左侧内边距，避免文字贴边框 */
+            color: #CCC;           /* 默认文字颜色（浅灰色） */
+            font-size: 14px;       /* 输入框文字大小 */
+        }
+        /* 搜索按钮样式 */
+        .container .search button {
+            float: left;           /* 左浮动，与输入框并排 */
+            width: 150px;          /* 按钮宽度 */
+            height: 52px;          /* 按钮高度（与输入框+边框总高度一致） */
+            background-color: #4e6ef2; /* 按钮背景色（蓝色） */
+            color: #FFF;           /* 按钮文字颜色（白色） */
+            font-size: 19px;       /* 按钮文字大小 */
+            font-family:Georgia, 'Times New Roman', Times, serif; /* 按钮字体 */
+        }
+
+        /* ===================== 搜索结果区域样式 ===================== */
+        /* 结果列表容器样式 */
+        .container .result {
+            width: 100%;           /* 宽度继承父容器 */
+        }
+        /* 单个搜索结果项样式 */
+        .container .result .item {
+            margin-top: 15px;      /* 结果项之间的上下间距 */
+        }
+        /* 结果项中的标题链接样式 */
+        .container .result .item a {
+            display: block;        /* 块级元素，独占一行 */
+            text-decoration: none; /* 去掉链接下划线 */
+            font-size: 20px;       /* 标题文字大小 */
+            color: #4e6ef2;        /* 标题颜色（蓝色，与按钮呼应） */
+        }
+        /* 链接hover效果：鼠标悬浮时显示下划线 */
+        .container .result .item a:hover {
+            text-decoration: underline;
+        }
+        /* 结果项中的摘要文本样式 */
+        .container .result .item p {
+            margin-top: 5px;       /* 与标题的间距 */
+            font-size: 16px;       /* 摘要文字大小 */
+            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; /* 摘要字体 */
+        }
+        /* 结果项中的URL样式 */
+        .container .result .item i{
+            display: block;        /* 块级元素，独占一行 */
+            font-style: normal;    /* 取消i标签默认的斜体样式 */
+            color: green;          /* URL颜色（绿色） */
+        }
+    </style>
+</head>
+<body>
+    <!-- ===================== 页面主体结构 ===================== -->
+    <!-- 主容器：包含搜索框和结果区域 -->
+    <div class="container">
+        <!-- 搜索框区域 -->
+        <div class="search">
+            <!-- 搜索输入框：默认提示文字 -->
+            <input type="text" value="请输入搜索关键字">
+            <!-- 搜索按钮：点击触发Search()函数 -->
+            <button onclick="Search()">搜索一下</button>
+        </div>
+        <!-- 搜索结果区域：动态渲染结果 -->
+        <div class="result">
+            <!-- 注释掉的示例结果：用于开发调试，实际由JS动态生成 -->
+            <!-- <div class="item">
+                <a href="#">这是标题</a>
+                <p>这是摘要...</p>
+                <i>https://xxx</i>
+            </div> -->
+        </div>
+    </div>
+
+    <!-- ===================== JavaScript交互逻辑 ===================== -->
+    <script>
+        /**
+         * @brief 搜索按钮点击事件处理函数
+         * @details 核心流程：
+         *          1. 提取输入框中的搜索关键词
+         *          2. 发起AJAX GET请求到后端/s接口
+         *          3. 成功接收数据后，调用BuildHtml渲染结果
+         */
+        function Search(){
+            // 1. 提取输入框中的关键词（jQuery选择器：容器→搜索框→输入框）
+            let query = $(".container .search input").val();
+            console.log("query = " + query); // 控制台打印关键词（调试用）
+
+            // 2. 发起AJAX请求（异步请求后端接口，无页面刷新）
+            $.ajax({
+                type: "GET",                // 请求方式：GET
+                url: "/s?word=" + query,    // 请求地址：后端搜索接口（拼接关键词参数）
+                success: function(data){    // 请求成功的回调函数
+                    console.log(data);      // 控制台打印后端返回的JSON数据（调试用）
+                    BuildHtml(data);        // 调用渲染函数，生成搜索结果HTML
+                }
+            });
+        }
+
+        /**
+         * @brief 渲染搜索结果到页面
+         * @param data 后端返回的JSON数组（每个元素包含title/desc/url等字段）
+         * @details 核心流程：
+         *          1. 清空历史结果
+         *          2. 遍历JSON数据，动态创建DOM元素
+         *          3. 将创建的元素追加到结果区域
+         */
+        function BuildHtml(data){
+            // 1. 获取结果区域的DOM元素（jQuery选择器）
+            let result_lable = $(".container .result");
+            // 2. 清空历史搜索结果（避免叠加）
+            result_lable.empty();
+
+            // 3. 遍历后端返回的结果数组
+            for( let elem of data){
+                // 3.1 创建标题链接标签（<a>）
+                let a_lable = $("<a>", {
+                    text: elem.title,   // 链接文字：文档标题
+                    href: elem.url,     // 链接地址：文档URL
+                    target: "_blank"    // 新标签页打开链接
+                });
+                // 3.2 创建摘要文本标签（<p>）
+                let p_lable = $("<p>", {
+                    text: elem.desc     // 文本内容：文档摘要
+                });
+                // 3.3 创建URL标签（<i>）
+                let i_lable = $("<i>", {
+                    text: elem.url      // 文本内容：文档URL
+                });
+                // 3.4 创建结果项容器（<div class="item">）
+                let div_lable = $("<div>", {
+                    class: "item"       // 设置类名，匹配CSS样式
+                });
+
+                // 3.5 组装DOM元素（标题→结果项，摘要→结果项，URL→结果项）
+                a_lable.appendTo(div_lable);
+                p_lable.appendTo(div_lable);
+                i_lable.appendTo(div_lable);
+                // 3.6 将结果项追加到结果区域
+                div_lable.appendTo(result_lable);
+            }
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
